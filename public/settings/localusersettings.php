@@ -17,6 +17,6 @@ if (LoginCheck::isLoggedInAsAdmin()) {
     require_once(RESOURCE_DIR . "views/local_admin/usersettings.php");
 
 } else {
-    header('Location: /localadmin.php');
+    header('Location: /localadmin');
     exit();
 }

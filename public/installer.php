@@ -8,7 +8,7 @@
             if ($db_connection = startPDOConnection()) {
                 $stmt = $db_connection->query('SELECT NULL FROM localusers');
                 if ($stmt->rowCount() != 0) {
-                    header('location: /index.php');
+                    header('location: /index');
                     exit();
                 }
             }

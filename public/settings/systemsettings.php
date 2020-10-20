@@ -15,43 +15,48 @@
         
         if (isset($_POST['addAdminGroup'])) {
             $systemSettings->addAdminGroupWithPost();
-            header('Location: systemsettings.php');
+            header('Location: systemsettings');
             exit();
         }
         elseif (isset($_POST['deleteAdminGroup'])) {
             $systemSettings->deleteAdminGroupWithPost();
-            header('Location: systemsettings.php');
+            header('Location: systemsettings');
             exit();
         }
         elseif (isset($_POST['addResetGroup'])) {
 
             $systemSettings->addResetGroupWithPost();
-            header('Location: systemsettings.php');
+            header('Location: systemsettings');
             exit();
         }
         elseif (isset($_POST['deleteResetGroup'])) {
             $systemSettings->deleteResetGroupWithPost();
-            header('Location: systemsettings.php');
+            header('Location: systemsettings');
             exit();
         }
         elseif (isset($_POST['changeEmailSettings'])) {
             $systemSettings->setEmailSettingsWithPost();
-            header('Location: systemsettings.php');
+            header('Location: systemsettings');
             exit();
         }
         elseif (isset($_POST['updateOtherSettings'])) {
             $systemSettings->setOtherSettingsWithPost();
-            header('Location: systemsettings.php');
+            header('Location: systemsettings');
             exit();
         }
         elseif (isset($_POST['addSecretQuestion'])) {
             $systemSettings->addSecretQuestionWithPost();
-            header('Location: systemsettings.php');
+            header('Location: systemsettings');
             exit();
         }
         elseif (isset($_POST['changeSecretQuestion'])) {
             $systemSettings->changeSecretQuestionStatusFromPOST();
-            header('Location: systemsettings.php');
+            header('Location: systemsettings');
+            exit();
+        }
+        elseif (isset($_POST['deleteSecretQuestion'])) {
+            $systemSettings->deleteSecretQuestionFromPOST();
+            header('Location: systemsettings');
             exit();
         }
 
@@ -60,6 +65,6 @@
     }
 
     else {
-        header('Location: /index.php');
+        header('Location: /index');
         exit();
     }

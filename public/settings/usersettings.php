@@ -16,6 +16,6 @@ if (LoginCheck::isDomainNormalUser()) {
     require_once(RESOURCE_DIR ."views/user_settings.php");
 }
 else {
-    header('Location: /account.php?page=settings/usersettings.php');
+    header('Location: /account?page=settings/usersettings');
     exit();
 }

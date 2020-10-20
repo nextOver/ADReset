@@ -9,10 +9,10 @@
         $ADConnectionSettings = $ADConnectionSettingsObject->getAll();
         // Make sure all the settings are set
         if (empty($ADConnectionSettings) || !$ADConnectionSettingsObject->areAllSettingsSet()) {
-            header('Location: /settings/connectionsettings.php');
+            header('Location: /settings/connectionsettings');
         }
         else {
-            header('Location: /settings/systemsettings.php');
+            header('Location: /settings/systemsettings');
         }
     }
     elseif (LoginCheck::isLoggedIn() && LoginCheck::isDomain()) {

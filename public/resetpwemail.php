@@ -6,7 +6,7 @@
 
     // If they are logged in then they shouldn't be resetting their password. In this case, redirect them to home.
     if (LoginCheck::isLoggedIn()) {
-        header("location: /index.php");
+        header("location: /index");
         exit();
     }
     elseif (isset($isEmailResetEnabled) && $isEmailResetEnabled == 'true') {
@@ -36,18 +36,18 @@
                     default:
                         FlashMessage::flash('ResetPWError', 'An unexpected error occurred. Please contact the Help Desk for assistance.');
                 }
-                header('Location: /resetpwemail.php');
+                header('Location: /resetpwemail');
                 exit();
             }
 
             FlashMessage::flash('ResetPWMessage', 'The password recovery email was sent. You may now close this tab.');
-            header('Location: /resetpwemail.php');
+            header('Location: /resetpwemail');
             exit();
         }
 
         require_once(RESOURCE_DIR . "/views/reset_pw_email.php");
     }
     else {
-        header("location: /index.php");
+        header("location: /index");
         exit();
     }

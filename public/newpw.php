@@ -11,7 +11,7 @@
             $resetPW = new ResetPW();
             if (!$resetPW->isCodeValidFromEmail()) {
                 // If the code is invalid, return the user to index.php
-                header('Location: /index.php');
+                header('Location: /index');
                 exit();
             }
 
@@ -22,7 +22,7 @@
             if (!$resetPW->isQuestionsCodeValid($_GET['idq'])) {
                 // If the code is invalid, return the user to index.php
                 FlashMessage::flash('InvalidCodeError', '/js/invalidCodePrompt.js');
-                header('Location: /index.php');
+                header('Location: /index');
                 exit();
             }
 
@@ -35,18 +35,18 @@
                 if (isset($_POST['setPassword'])) {
                     if ($resetPW->setNewPassword()) {
                         FlashMessage::flash('passwordSetMessage', '/js/passwordResetSuccess.js');
-                        header('Location: /index.php');
+                        header('Location: /index');
                         exit();
                     }
                     else {
-                        header('Location: /newpw.php?id=' . $_POST['id']);
+                        header('Location: /newpw?id=' . $_POST['id']);
                         exit();
                     }
                 }
             }
             else {
                 // If the code is invalid, return the user to index.php
-                header('Location: /index.php');
+                header('Location: /index');
                 exit();
             }
         }
@@ -56,23 +56,23 @@
                 if (isset($_POST['setPassword'])) {
                     if ($resetPW->setNewPassword()) {
                         FlashMessage::flash('passwordSetMessage', '/js/passwordResetSuccess.js');
-                        header('Location: /index.php');
+                        header('Location: /index');
                         exit();
                     }
                     else {
-                        header('Location: /newpw.php?idq=' . $_POST['id']);
+                        header('Location: /newpw?idq=' . $_POST['id']);
                         exit();
                     }
                 }
             }
             else {
                 // If the code is invalid, return the user to index.php
-                header('Location: /index.php');
+                header('Location: /index');
                 exit();
             }
         }
         else {
-            header("Location: /index.php");
+            header("Location: /index");
             exit();
         }
 

@@ -1,4 +1,4 @@
 $(document).ready(function() {
-    bootbox.alert("Your password was successfully reset.", function() {
+    bootbox.alert("Sua senha foi redefinida com sucesso.", function() {
     });
 });

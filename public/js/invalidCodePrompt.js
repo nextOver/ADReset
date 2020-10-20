@@ -1,4 +1,4 @@
 $(document).ready(function() {
-    bootbox.alert("The reset code you used has expired or is invalid.<br />Please try resetting your password again.", function() {
+    bootbox.alert("O código de redefinição que você usou expirou ou é inválido.<br/> Tente redefinir sua senha novamente.", function() {
     });
 });

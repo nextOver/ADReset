@@ -34,53 +34,54 @@ $pageTitle = 'Home';
     <div class="col-md-12">
         <form class="form-horizontal" method="post" action="index.php" name="loginform">
             <fieldset>
-                <h2 class="topHeader">Password Reset Portal</h2>
+                <h2 class="topHeader">Portal de redefinição de senhas</h2>
                 <br />
                 <div class="col-md-12">
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    What would you like to do?
+                              <h4 class="panel-title">                                    
+                                O que você gostaria de fazer?
                                 </h4>
                             </div>
                             <div id="collapse4" class="panel-collapse ">
                                 <div class="panel-body">
                                     <br />
-                                    <p style="font-weight:normal; max-width:780px">
-                                        ADReset allows you to reset your Windows (Active Directory) password via secret questions or a secondary email. 
-                                        To set your secret questions, click on the &quot;Set Questions&quot; button and then login. Your password cannot be reset via this method until your secret questions are set.
-                                        You may also simply change your password without resetting it by simply entering your current password and your new password. To do so, simply click on &quot;Change Password&quot;.
+                                    <p style="font-weight:normal; max-width:780px">                              
+                                        ADReset permite redefinir sua senha do Windows (Active Directory) por meio de perguntas secretas ou um e-mail secundário. 
+                                        Para definir as perguntas secretas, clique em &quot;Definir perguntas&quot; 
+                                        e faça login. Sua senha não pode ser redefinida por meio deste método até que suas perguntas secretas sejam definidas.
+                                        Você também pode simplesmente alterar sua senha sem redefini-la, simplesmente inserindo sua senha atual e sua nova senha. Para fazer isso, basta clicar em &quot;Alterar senha&quot;.
                                     </p><br />
 
                                     <p style="font-weight:normal" class="indexHeader">
-                                        Please select an option below:
+                                        Selecione uma opção abaixo:
                                     </p>
                                     <p class="indexOptions">
                                         <?php
                                             if (LoginCheck::isLoggedInAsAdmin()) {
-                                                echo '<a data-toggle="tooltip" data-title="This function is disabled because you are an administrator" class="btn btn-primary disabled">Set Questions</a><br />';
+                                                echo '<a data-toggle="tooltip" data-title="Esta função está desativada porque você é um administrador" class="btn btn-primary disabled">Definir perguntas</a><br />';
                                             }
                                             else {
-                                                echo '<a href="account.php" class="btn btn-primary">Set Questions</a><br />';
+                                                echo '<a href="account" class="btn btn-primary">Definir perguntas</a><br />';
                                             }
                                         ?>
-                                        <a href="changepw.php" class="btn btn-primary">Change Password</a><br />
+                                        <a href="changepw" class="btn btn-primary">Alterar senha</a><br />
                                         <?php
                                             if (LoginCheck::isLoggedIn()) {
-                                                echo '<a data-toggle="tooltip" data-title="This function is disabled while you are logged in" class="btn btn-primary disabled">Reset with Email</a><br />';
-                                                echo '<a data-toggle="tooltip" data-title="This function is disabled while you are logged in" class="btn btn-primary disabled">Reset with Questions</a><br />';
+                                                echo '<a data-toggle="tooltip" data-title="Esta função é desativada enquanto você está logado " class="btn btn-primary disabled">Reset com Email</a><br />';
+                                                echo '<a data-toggle="tooltip" data-title="Esta função é desativada enquanto você está logado" class="btn btn-primary disabled">Reset com perguntas</a><br />';
                                             }
                                             else {
-                                                echo '<a href="resetpw.php" class="btn btn-primary">Reset with Questions</a><br />';
+                                                echo '<a href="resetpw" class="btn btn-primary">Reset com perguntas</a><br />';
 
                                                 $systemSettings = new SystemSettings;
                                                 $isEmailResetEnabled = $systemSettings->getOtherSetting('emailresetenabled');
                                                 if (isset($isEmailResetEnabled) && $isEmailResetEnabled == 'true') {
-                                                    echo '<a href="resetpwemail.php" class="btn btn-primary">Reset with Email</a><br />';
+                                                    echo '<a href="resetpwemail" class="btn btn-primary">Reset com Email</a><br />';
                                                 }
                                                 else {
-                                                    echo '<a data-toggle="tooltip" data-title="This function is disabled by your administrator." class="btn btn-primary disabled">Reset with Email</a><br />';
+                                                    echo '<a data-toggle="tooltip" data-title="Esta função foi desabilitada pelo seu administrador.." class="btn btn-primary disabled">Reset com Email</a><br />';
                                                 }
                                             }
                                         ?>

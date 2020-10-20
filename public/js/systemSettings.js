@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('form.deleteAdminGroup input.btn-link').on('click', function(e){
-        bootbox.confirm("Are you sure you want to remove this administrative group?", function(result) {
+        bootbox.confirm("Tem certeza de que deseja remover este grupo administrativo?", function(result) {
             if (result) {
                 $(e.target).closest("form").submit();
                 return true;
@@ -11,7 +11,7 @@ $(document).ready(function(){
     });
 
     $('form.deleteResetGroup input.btn-link').on('click', function(e){
-        bootbox.confirm("Are you sure you want to remove this reset group?", function(result) {
+        bootbox.confirm("Tem certeza de que deseja remover este grupo de redefinição?", function(result) {
             if (result) {
                 $(e.target).closest("form").submit();
                 return true;
@@ -23,7 +23,7 @@ $(document).ready(function(){
 
     $('form.changeSecretQuestion input.btn-link').on('click', function(e){
         if ($(this).val() == 'Disable') {
-            bootbox.confirm("Are you sure you want to disable this secret question? Users using this secret question will still be able to use this question, however, the question will no longer be available for new configurations.", function(result) {
+            bootbox.confirm("Tem certeza de que deseja desativar esta pergunta secreta? Os usuários que usam esta pergunta secreta ainda poderão usar esta pergunta, no entanto, a pergunta não estará mais disponível para novas configurações.", function(result) {
                 if (result) {
                     $(e.target).closest("form").submit();
                     return true;

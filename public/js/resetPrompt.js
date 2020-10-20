@@ -1,21 +1,21 @@
 $(document).ready(function(){
     $('#resetpw').on('click', function(e) {
         bootbox.dialog({
-          message: "By which method would you like to reset your password?",
-          title: "Reset Password",
+          message: "Por qual método você gostaria de redefinir sua senha?",
+          title: "Reset de senha",
           buttons: {
             success: {
               label: "Email",
               className: "btn-primary",
               callback: function() {
-                window.location.href = "/resetpwemail.php";
+                window.location.href = "/resetpwemail";
               }
             },
             main: {
-              label: "Secret Questions",
+              label: "Perguntas secretas",
               className: "btn-default",
               callback: function() {
-                window.location.href = "/resetpw.php";
+                window.location.href = "/resetpw";
               }
             }
           }

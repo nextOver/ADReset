@@ -2,7 +2,7 @@
     require_once('../resources/core/init.php');
 
     if (LoginCheck::isLoggedIn()) {
-        header("Location: /index.php");
+        header("Location: /index");
         exit();
     }
     else {
@@ -13,7 +13,7 @@
             }
             catch (Exception $e) {
                 FlashMessage::flash('ResetPWError', sanitize($e->getMessage()));
-                header("Location: /resetpw.php");
+                header("Location: /resetpw");
                 exit();
             }
 
@@ -22,14 +22,14 @@
             $resetPW = new ResetPW();
             if ($failedAttemptsAllowed = $systemSettings->getOtherSetting('failedattemptsallowed')) {
                 if ($resetPW->getNumberOfFailedAttempts($_GET['username']) >= intval($failedAttemptsAllowed)) {
-                    FlashMessage::flash('ResetPWError', 'You have failed to verify your secret questions too many times and your account is locked. Please contact the Help Desk for assistance.');
-                    header("Location: /resetpw.php");
+                    FlashMessage::flash('ResetPWError', 'Você não conseguiu verificar suas perguntas secretas muitas vezes e sua conta está bloqueada. Entre em contato com o Help Desk para obter assistência');
+                    header("Location: /resetpw");
                     exit();
                 }
             }
             else {
-                FlashMessage::flash('ResetPWError', 'There was a database error. Please try again.');
-                header("Location: /resetpw.php");
+                FlashMessage::flash('ResetPWError', 'Ocorreu um erro no banco de dados. Por favor, tente novamente.');
+                header("Location: /resetpw");
                 exit();
             }
 
@@ -37,14 +37,14 @@
             $userSettings = new UserSettings();
             try {
                 if ($userSettings->numSecretQuestionsSetToUser(urldecode($_GET['username'])) < 3) {
-                    FlashMessage::flash('ResetPWError', 'You cannot use this feature because you do not have your secret questions set.');
-                    header("Location: /resetpw.php");
+                    FlashMessage::flash('ResetPWError', 'Você não pode usar este recurso porque não tem suas perguntas secretas definidas.');
+                    header("Location: /resetpw");
                     exit();
                 }
             }
             catch (Exception $e) {
-                FlashMessage::flash('ResetPWError', 'There was a database error. Please try again.');
-                header("Location: /resetpw.php");
+                FlashMessage::flash('ResetPWError', 'Ocorreu um erro no banco de dados. Por favor, tente novamente.');
+                header("Location: /resetpw");
                 exit();
             }
 
@@ -53,8 +53,8 @@
                 require_once(RESOURCE_DIR . '/views/verify_questions.php');
             }
             else {
-                FlashMessage::flash('ResetPWError', 'You are not permitted to use this feature. Please contact the Help Desk for assistance.');
-                header("Location: /resetpw.php");
+                FlashMessage::flash('ResetPWError', 'Você não tem permissão para usar este recurso. Entre em contato com o Help Desk para obter assistência.');
+                header("Location: /resetpw");
                 exit();
             }
             
@@ -69,15 +69,15 @@
                 }
                 catch (Exception $e) {
                     FlashMessage::flash('ResetPWError', sanitize($e->getMessage()));
-                    header("Location: /resetpw.php");
+                    header("Location: /resetpw");
                     exit();
                 }
 
                 $resetPW = new ResetPW();
                 // Make sure the user is allowed to reset their password
                 if (!$resetPW->isUserAllowedToReset($_POST['username'], $AD)) {
-                    FlashMessage::flash('ResetPWError', 'You are not permitted to use this feature. Please contact the Help Desk for assistance.');
-                    header("Location: /resetpw.php");
+                    FlashMessage::flash('ResetPWError', 'Você não tem permissão para usar este recurso. Entre em contato com o Help Desk para obter assistência.');
+                    header("Location: /resetpw");
                     exit();
                 }
 
@@ -85,20 +85,20 @@
                 $systemSettings = new systemSettings();
                 if ($failedAttemptsAllowed = $systemSettings->getOtherSetting('failedattemptsallowed')) {
                     if ($resetPW->getNumberOfFailedAttempts($_GET['username']) >= intval($failedAttemptsAllowed)) {
-                        FlashMessage::flash('ResetPWError', 'You have failed to verify your secret questions too many times and your account is locked. Please contact the Help Desk for assistance.');
-                        header("Location: /resetpw.php");
+                        FlashMessage::flash('ResetPWError', 'Você não conseguiu verificar suas perguntas secretas muitas vezes e sua conta está bloqueada. Entre em contato com o Help Desk para obter assistência.');
+                        header("Location: /resetpw");
                         exit();
                     }
                 }
                 else {
-                    FlashMessage::flash('ResetPWError', 'There was a database error. Please try again.');
-                    header("Location: /resetpw.php");
+                    FlashMessage::flash('ResetPWError', 'Ocorreu um erro no banco de dados. Por favor, tente novamente.');
+                    header("Location: /resetpw");
                     exit();
                 }
 
                 if ($resetPW->getNumberOfFailedAttempts($_POST['username']) >= 5) {
-                    FlashMessage::flash('ResetPWError', 'You have failed to verify your secret questions too many times and your account is locked. Please contact the Help Desk for assistance.');
-                    header("Location: /resetpw.php");
+                    FlashMessage::flash('ResetPWError', 'Você não conseguiu verificar suas perguntas secretas muitas vezes e sua conta está bloqueada. Entre em contato com o Help Desk para obter assistência.');
+                    header("Location: /resetpw");
                     exit();
                 }
 
@@ -108,22 +108,22 @@
                     if ($resetPW->verifySecretQuestionSetToUser($_POST['username'], $_POST['secretQuestion1'], $_POST['secretAnswer1']) && $resetPW->verifySecretQuestionSetToUser($_POST['username'], $_POST['secretQuestion2'], $_POST['secretAnswer2']) && $resetPW->verifySecretQuestionSetToUser($_POST['username'], $_POST['secretQuestion3'], $_POST['secretAnswer3'])) {
                         $resetPW = new ResetPW();
                         if ($generatedcode = $resetPW->generateQuestionsCode($_POST['username'])) {
-                            header("Location: /newpw.php?idq=" . $generatedcode);
+                            header("Location: /newpw?idq=" . $generatedcode);
                             exit();
                         }
                     }
 
                     // Record the failed login in the database
                     $resetPW->setFailedAttempt($_POST['username']);
-                    FlashMessage::flash('ResetPWError', 'The secret questions provided were incorrect. Please try again.');
-                    header("Location: /resetpw.php");
+                    FlashMessage::flash('ResetPWError', 'As perguntas secretas fornecidas estavam incorretas. Por favor, tente novamente.');
+                    header("Location: /resetpw");
                     exit();
                 }
             }
 
         }
         else {
-            header("Location: /resetpw.php");
+            header("Location: /resetpw");
             exit();
         }
     }
