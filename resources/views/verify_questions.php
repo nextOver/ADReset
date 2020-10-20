@@ -12,7 +12,7 @@ $pageTitle = 'Verify Secret Questions';
 <!-- Navigation Menu Ends -->
 <!-- Content Starts -->
 <div class="container" id="mainContentBody">
-    <h2 class="topHeader">Verify Your Secret Questions</h2>
+    <h2 class="topHeader">Verifique suas perguntas secretas</h2>
     <br />
     <div class="col-md-12">
         <?php
@@ -28,20 +28,20 @@ $pageTitle = 'Verify Secret Questions';
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
-                        Secret Question Verification
+                    <h4 class="panel-title">                        
+                            Verificação de pergunta secreta
                     </h4>
                 </div>
                 <div id="collapse4" class="panel-collapse ">
                     <div class="panel-body">
                         <p class="verifyQuestionsSubheader">
-                            Enter Your Secret Questions Below:
+                            Digite suas perguntas secretas abaixo:
                         </p>
                         <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead><tr>
-                                <th class="center">Secret Questions:</th>
-                                <th class="center">Secret Answers:</th>
+                                <th class="center">pergunta secreta:</th>
+                                <th class="center">Resposta secreta:</th>
                             </tr></thead>
                             <tbody>
                             <form class="btn-link-form" method="post" action="verifyquestions.php" name="verifySecretQuestions">
@@ -52,7 +52,7 @@ $pageTitle = 'Verify Secret Questions';
                             ?>
                                     <tr>
                                         <td class="center width-forty" style="min-width:150px"><?php echo $question; ?></td>
-                                        <td class="width-fifty" style="min-width:150px"><input type="password" class="form-control" placeholder="Enter the secret answer" name=<?php echo '"secretAnswer' . $i . '"' ?>></td>
+                                        <td class="width-fifty" style="min-width:150px"><input type="password" class="form-control" placeholder="Insira sua resposta secreta" required="yes" name=<?php echo '"secretAnswer' . $i . '"' ?>></td>
                                         <input type="hidden" name=<?php echo '"secretQuestion' . $i . '"' ?> value=<?php echo '"', $question, '"'; ?>>
                                     </tr>
                             <?php
@@ -65,8 +65,8 @@ $pageTitle = 'Verify Secret Questions';
                                 <div class="form-group">
                                   <div class="col-lg-11 col-lg-offset-1">
                                     <input type="hidden" value=<?php echo urldecode($_GET['username']); ?> name="username">
-                                    <button type="submit" class="btn btn-primary" name="verifySecretQuestions" value="Submit">Submit</button>
-                                    <button class="btn btn-default" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-primary" name="verifySecretQuestions" value="Submit">Confirmar</button>
+                                    
                                   </div>
                                 </div>
                                 <br />

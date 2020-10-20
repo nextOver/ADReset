@@ -9,23 +9,23 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- Logo designed and made by Mandy Patterson -->
-            <a href="/index.php" class="navbar-brand"><img src="/img/ADReset.png" /></a>
+            <a href="/index" class="navbar-brand"><img src="/img/ADReset.png" /></a>
         </div>
         <!-- Navigation links for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <!-- Right links on the navbar -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/index.php">Home</a></li>
+                <li><a href="/index">Início</a></li>
                 <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Manage <b class="caret"></b></a>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Gerenciar <b class="caret"></b></a>
                     <ul role="menu" class="dropdown-menu">
-                        <li><a class="connectionSettingsLink" href="#">Connection Settings</a></li>
+                        <li><a class="connectionSettingsLink" href="#">Configurações de conexão</a></li>
                         <li class="divider"></li>
-                        <li><a href="/settings/systemsettings.php">System Settings</a></li>
+                        <li><a href="/settings/systemsettings">Configurações do sistema</a></li>
                     </ul>
                 </li>
-                <li><a href="/changepw.php">Change Password</a></li>
-                <li><a href="/account.php?logout">Logout</a></li>
+                <li><a href="/changepw">Alterar senha</a></li>
+                <li><a href="/account?logout">Logout</a></li>
             </ul>
         </div>
     </div>

@@ -13,7 +13,7 @@ $pageTitle = 'Settings';
 <!-- Content Starts -->
 <div class="container" id="mainContentBody">
     <h2 class="topHeader">Settings</h2>
-    <h3>Welcome <?php echo ucwords($_SESSION['user_name']); ?>,</h3>
+    <h3>Bem vindo <?php echo ucwords($_SESSION['user_name']); ?>,</h3>
     <br />
     <div class="col-md-12">
         <?php
@@ -32,13 +32,13 @@ $pageTitle = 'Settings';
             }
         ?>
     </div>
-    <h4>What would you like to change?</h4>
+    <h4>O que você gostaria de fazer?</h4>
     <div class="panel-group" id="accordion">
         <!-- Change Password Form -->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Change Password</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Alterar senha</a>
                 </h4>
             </div>
             <div id="collapse1" class="panel-collapse collapse">
@@ -46,27 +46,27 @@ $pageTitle = 'Settings';
                 <form class="form-horizontal" method="post" action="/settings/localusersettings.php" name="loginform">
                     <fieldset>
                     <div class="form-group">
-                        <label for="inputOldPassword" class="col-lg-2 control-label">Old Password:</label>
+                        <label for="inputOldPassword" class="col-lg-2 control-label">Senha antiga:</label>
                         <div class="col-lg-10">
-                            <input type="password" class="form-control" id="inputOldPassword" placeholder="Old Password" name="user_oldpassword" value="" autocomplete="off">
+                            <input type="password" class="form-control" id="inputOldPassword" placeholder="Senha antiga" name="user_oldpassword" value="" autocomplete="off" required="yes">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputNewPassword" class="col-lg-2 control-label">New Password (<?php echo Config::get('security/passwordLength') ?>+ Characters):</label>
+                        <label for="inputNewPassword" class="col-lg-2 control-label">Nova senha (<?php echo Config::get('security/passwordLength') ?>+ Caracteres):</label>
                         <div class="col-lg-10">
-                            <input type="password" class="form-control" id="inputNewPassword" placeholder="New Password" name="user_newpassword" pattern=<?php echo '".{', Config::get('security/passwordLength'), ',}"' ?> value="" autocomplete="off">
+                            <input type="password" class="form-control" id="inputNewPassword" placeholder="Nova senha" name="user_newpassword" pattern=<?php echo '".{', Config::get('security/passwordLength'), ',}"' ?> value="" autocomplete="off" required="yes">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputConfirmNewPassword" class="col-lg-2 control-label">Confirm New Password:</label>
+                        <label for="inputConfirmNewPassword" class="col-lg-2 control-label">Confirmar nova senha:</label>
                         <div class="col-lg-10">
-                            <input type="password" class="form-control" id="inputConfirmNewPassword" placeholder="New Password" name="user_confirmnewpassword" pattern=<?php echo '".{', Config::get('security/passwordLength'), ',}"' ?> value="" autocomplete="off">
+                            <input type="password" class="form-control" id="inputConfirmNewPassword" placeholder="Nova senha" name="user_confirmnewpassword" pattern=<?php echo '".{', Config::get('security/passwordLength'), ',}"' ?> value="" autocomplete="off" required="yes">
                         </div>
                     </div>
                     <br />
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" name="changePassword" value="Change Password">Update</button>
+                            <button type="submit" class="btn btn-primary" name="changePassword" value="Change Password">Atualizar</button>
                             <button class="btn btn-default" type="reset">Reset</button>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ $pageTitle = 'Settings';
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Change Profile</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Alterar perfil</a>
                 </h4>
             </div>
             <div id="collapse2" class="panel-collapse collapse">
@@ -88,27 +88,27 @@ $pageTitle = 'Settings';
                 <form class="form-horizontal" method="post" action="/settings/localusersettings.php" name="loginform">
                     <fieldset>
                     <div class="form-group">
-                        <label for="inputNewUsername" class="col-lg-2 control-label">Username:</label>
+                        <label for="inputNewUsername" class="col-lg-2 control-label">Nome de usuário:</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputNewUsername" placeholder="New Username" name="user_newusername" value=<?php echo '"' . sanitize($_SESSION['user_name']) . '"';?> autocomplete="off">
+                            <input type="text" class="form-control" id="inputNewUsername" placeholder="Nome de usuário" name="user_newusername" value=<?php echo '"' . sanitize($_SESSION['user_name']) . '"';?> autocomplete="off" required="yes">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputNewName" class="col-lg-2 control-label">Name:</label>
+                        <label for="inputNewName" class="col-lg-2 control-label">Nome:</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputNewName" placeholder="New Name" name="user_newname" value=<?php echo '"' . sanitize($userInfo->get()['name']) . '"';?> autocomplete="off">
+                            <input type="text" class="form-control" id="inputNewName" placeholder="Nome" name="user_newname" value=<?php echo '"' . sanitize($userInfo->get()['name']) . '"';?> autocomplete="off" required="yes">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputNewEmail" class="col-lg-2 control-label">Email:</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="inputNewEmail" placeholder="New Email" name="user_newemail" value=<?php echo '"' . sanitize($userInfo->get()['email']) . '"';?> autocomplete="off">
+                            <input type="text" class="form-control" id="inputNewEmail" placeholder="Email" name="user_newemail" value=<?php echo '"' . sanitize($userInfo->get()['email']) . '"';?> autocomplete="off">
                         </div>
                     </div>
                     <br />
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary" name="changeProfile" value="Change Profile">Update</button>
+                            <button type="submit" class="btn btn-primary" name="changeProfile" value="Change Profile">Atualizar</button>
                             <button class="btn btn-default" type="reset">Reset</button>
                         </div>
                     </div>
@@ -122,12 +122,12 @@ $pageTitle = 'Settings';
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Security Settings</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Configurações de segurança</a>
                 </h4>
             </div>
             <div id="collapse3" class="panel-collapse collapse">
                 <div class="panel-body">
-                    No security settings are configurable yet.
+                    Nenhuma configuração de segurança pode ser configurada ainda.
                 </div>
             </div>
         </div>

@@ -18,8 +18,8 @@ $pageTitle = 'System Settings';
 <!-- Navigation Menu Ends -->
 <!-- Content Starts -->
 <div class="container" id="mainContentBody">
-    <h2 class="topHeader">System Settings</h2>
-    <h3>Welcome <?php echo ucwords($_SESSION['user_name']); ?>,</h3>
+    <h2 class="topHeader">Configurações do sistema</h2>
+    <h3>Bem vindo <?php echo ucwords($_SESSION['user_name']); ?>,</h3>
     <br />
     <div class="col-md-12">
         <?php
@@ -32,24 +32,25 @@ $pageTitle = 'System Settings';
             }
         ?>
     </div>
-    <h4>What would you like to change?</h4>
+    <h4>O que você gostaria de alterar?</h4>
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Administrative Security Groups</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            Grupos de segurança administrativos</a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
                     <div class="panel-body">
                         <p class="systemSettingsSubheader">
-                            <a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="These are the groups that have Administrative access to ADReset. The group names below are the SAMAccountName attributes of the groups. This is called &quot;Group name (pre-Windows 2000)&quot; in AD Users and Computers.">View the Administrative Groups Below:</a>
+                            <a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Esses são os grupos que têm acesso administrativo ao ADReset. Os nomes dos grupos abaixo são os atributos SAMAccountName dos grupos. Isso é chamado de &quot; Nome do grupo (pré-Windows 2000) &quot; em Usuários e computadores do AD">Veja os grupos administrativos abaixo:</a>
                         </p>
                         <div class="table-responsive">
                         <table class="table table-bordered">
                             <theader><tr>
-                                <th><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="The group names below are the SAMAccountName attributes of the groups. This is called &quot;Group name (pre-Windows 2000)&quot; in AD Users and Computers.">Group Names:</a></th>
-                                <th>Action:</th>
+                                <th><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="The group names below are the SAMAccountName attributes of the groups. This is called &quot;Group name (pre-Windows 2000)&quot; in AD Users and Computers.">Nome dos grupos:</a></th>
+                                <th>Ação:</th>
                             </tr></theader>
                             <tbody>
                             <?php
@@ -104,18 +105,18 @@ $pageTitle = 'System Settings';
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Reset Capable Security Groups</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Redefinir grupos de segurança</a>
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel-body">
                         <p class="systemSettingsSubheader">
-                            <a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="These are the groups that are permitted to use ADReset to reset their password. The group names below are the SAMAccountName attributes of the groups. This is called &quot;Group name (pre-Windows 2000)&quot; in AD Users and Computers.">View the Reset Capable Groups Below:</a>
+                            <a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Esses são os grupos que têm permissão para usar ADReset para redefinir suas senhas. Os nomes dos grupos abaixo são os atributos SAMAccountName dos grupos. Isso é chamado de &quot; Nome do grupo (pré-Windows 2000) &quot; em usuários e computadores AD">Veja os grupos capazes de redefinir senhas::</a>
                         </p>
                         <div class="table-responsive">
                         <table class="table table-bordered">
                             <theader><tr>
-                                <th><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="The group names below are the SAMAccountName attributes of the groups. This is called &quot;Group name (pre-Windows 2000)&quot; in AD Users and Computers.">Group Names:</a></th>
+                                <th><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Os nomes dos grupos abaixo são os atributos SAMAccountName dos grupos. Isso é chamado de &quot; Nome do grupo (pré-Windows 2000) &quot; em Usuários e computadores do AD">Nome dos grupos:</a></th>
                                 <th>Action:</th>
                             </tr></theader>
                             <tbody>
@@ -170,54 +171,57 @@ $pageTitle = 'System Settings';
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Email Connection Settings</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Configuração de conexão com e-mail</a>
                     </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
                     <div class="panel-body">
                         <p class="systemSettingsSubheader">
-                            Enter the email settings for ADReset to send notifications:
+                            
+                            Insira as configurações de e-mail para enviar notificações
+
                         </p>
                         <form class="form-horizontal" method="post" action="/settings/systemsettings.php" name="updateEmailSettings">
                         <fieldset>
                             <div class="form-group">
-                                <label for="inputFromEmail" class="col-lg-2 control-label">From Email:</label>
+                                <label for="inputFromEmail" class="col-lg-2 control-label">
+                                Email de origem:</label>
                                 <div class="col-lg-10">
                                     <input type="email" class="form-control" id="inputFromEmail" placeholder="From Email Address" name="email_fromEmail" value="<?php if (isset($emailSettings['fromEmail'])) { echo sanitize($emailSettings['fromEmail']); } ?>" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputFromName" class="col-lg-2 control-label">From Name:</label>
+                                <label for="inputFromName" class="col-lg-2 control-label">Nome:</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="inputFromName" placeholder="From Name" name="email_fromName" value="<?php if (isset($emailSettings['fromName'])) { echo sanitize($emailSettings['fromName']); } ?>" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputUsername" class="col-lg-2 control-label">Username:</label>
+                                <label for="inputUsername" class="col-lg-2 control-label">Nome de usuário</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="inputUsername" placeholder="Username" name="email_username" value="<?php if (isset($emailSettings['username'])) { echo sanitize($emailSettings['username']); } ?>" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputPassword" class="col-lg-2 control-label">Password:</label>
+                                <label for="inputPassword" class="col-lg-2 control-label">Senha:</label>
                                 <div class="col-lg-10">
                                     <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="email_password" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputServer" class="col-lg-2 control-label">Server:</label>
+                                <label for="inputServer" class="col-lg-2 control-label">Servidor:</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="inputServer" placeholder="Mail Server DNS Name" name="email_server" value="<?php if (isset($emailSettings['server'])) { echo sanitize($emailSettings['server']); } ?>" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputPort" class="col-lg-2 control-label">Port:</label>
+                                <label for="inputPort" class="col-lg-2 control-label">Porta:</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="inputPort" placeholder="Mail Server Port" name="email_port" value="<?php if (isset($emailSettings['port'])) { echo sanitize($emailSettings['port']); } ?>" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label">Encryption:</label>
+                                <label class="col-lg-2 control-label">Encriptação:</label>
                                 <div class="col-lg-10">
                                       <select class="form-control" name="email_encryption">
                                         <?php
@@ -227,10 +231,10 @@ $pageTitle = 'System Settings';
                                                     case ('SSL'):
                                                         echo '<option>SSL</option>
                                                               <option>TLS</option>
-                                                              <option>None</option>';
+                                                              <option>Nenhum</option>';
                                                         break;
                                                     case ('None'):
-                                                        echo '<option>None</option>
+                                                        echo '<option>Nenhum</option>
                                                               <option>TLS</option>
                                                               <option>SSL</option>';
                                                         break;
@@ -238,14 +242,14 @@ $pageTitle = 'System Settings';
                                                     default:
                                                         echo '<option>TLS</option>
                                                               <option>SSL</option>
-                                                              <option>None</option>';
+                                                              <option>Nenhum</option>';
                                                         break;
                                                 }
                                             }
                                             else {
                                                 echo '<option>TLS</option>
                                                       <option>SSL</option>
-                                                      <option>None</option>';
+                                                      <option>Nenhum</option>';
                                             }
                                         ?>
                                       </select>
@@ -254,8 +258,8 @@ $pageTitle = 'System Settings';
                             <br />
                             <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
-                                    <button type="submit" class="btn btn-primary" name="changeEmailSettings" value="Change Email Settings">Update</button>
-                                    <button class="btn btn-default" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-primary" name="changeEmailSettings" value="Change Email Settings">Atualiar</button>
+                                    
                                 </div>
                             </div>
                         </fieldset>
@@ -264,7 +268,8 @@ $pageTitle = 'System Settings';
                         <form class="form-horizontal" id="testEmailSettings" method="post" action="/ajax/testemailsettings.php" name="sendTestEmail">
                         <fieldset>
                             <p class="systemSettingsSubheader">
-                                Send a test email with your saved settings:
+                                
+                                Envie um e-mail de teste com suas configurações salvas:
                             </p>
                             <div class="form-group">
                                 <label for="inputToEmailTest" class="col-lg-2 control-label">Send To:</label>
@@ -275,7 +280,7 @@ $pageTitle = 'System Settings';
                             <br />
                             <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
-                                    <button type="submit" class="btn btn-primary" name="sendTestEmail" data-loading-text="Sending...">Send</button>
+                                    <button type="submit" class="btn btn-primary" name="sendTestEmail" data-loading-text="Enviando...">Enviar</button>
                                     <button class="btn btn-default" type="reset">Reset</button>
                                 </div>
                             </div>
@@ -288,19 +293,19 @@ $pageTitle = 'System Settings';
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Secret Questions</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Perguntas secretas</a>
                     </h4>
                 </div>
                 <div id="collapse4" class="panel-collapse collapse">
                     <div class="panel-body">
                         <p class="systemSettingsSubheader">
-                            <a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="A minimum of three secret questions must be set before users may set their secret questions and answers. If you choose to disable a secret question, current users using that question will still be able to use it but new users will not be able to use the disabled secret question.">Manage Secret Questions:</a>
+                            <a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="A minimum of three secret questions must be set before users may set their secret questions and answers. If you choose to disable a secret question, current users using that question will still be able to use it but new users will not be able to use the disabled secret question.">Gerenciar perguntas secretas:</a>
                         </p>
                         <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <theader><tr>
-                                <th>Secret Questions:</th>
-                                <th>Action:</th>
+                                <th>Pergunta secreta:</th>
+                                <th>Ação:</th>
                             </tr></theader>
                             <tbody>
                             <?php
@@ -314,9 +319,9 @@ $pageTitle = 'System Settings';
                             <tr>
                                 <td> <?php echo sanitize($question['secretquestion']); ?> </td>
                                 <td>
-                                    <form class="btn-link-form changeSecretQuestion" method="post" action="systemsettings.php" name="changeSecretQuestion">
-                                    <input type="hidden" value=<?php echo '"', sanitize($question['secretquestion']), '"' ?> name="secretQuestion">
-                                    <input type="hidden" value="Change" name="changeSecretQuestion">
+                    <form class="btn-link-form changeSecretQuestion" method="post" action="systemsettings.php" name="changeSecretQuestion">
+<input type="hidden" value=<?php echo '"', sanitize($question['secretquestion']), '"' ?> name="secretQuestion">
+                    <input type="hidden" value="Change" name="changeSecretQuestion">
 
                                     <?php 
                                         if ($question['enabled']) {
@@ -327,7 +332,14 @@ $pageTitle = 'System Settings';
                                         }
                                     ?>
                                     
-                                    </form>
+                            </form>
+
+                    <form class="btn-link-form" method="post" action="systemsettings.php" name="deleteSecretQuestion">
+                    <input type="hidden" value=<?php echo '"', sanitize($question['secretquestion']), '"' ?> name="secretQuestion">
+                    <input type="hidden" value="Delete" name="deleteSecretQuestion">
+
+                        <input type="submit" class="btn btn-link" value="Remove">
+                    </form>
                                 </td>
                             </tr>                           
                             
@@ -337,10 +349,10 @@ $pageTitle = 'System Settings';
                             ?>
                             <tr>
                                 <td><form class="btn-link-form" method="post" action="systemsettings.php" name="addSecretQuestion">
-                                    <input type="text" class="form-control addSecretQuestion" placeholder="Enter a secret question" name="secretquestion">
+                                    <input type="text" class="form-control addSecretQuestion" placeholder="Insira uma nova pergunta secreta" name="secretquestion" required="yes">
                                 </td>
                                 <td>
-                                    <input type="submit" class="btn btn-link addSecretQuestionBtn" name="addSecretQuestion" value="Add">
+                                    <input type="submit" class="btn btn-link addSecretQuestionBtn" name="addSecretQuestion" value="Adicionar">
                                 </form></td>
                             </tr>
                             </tbody>
@@ -353,18 +365,18 @@ $pageTitle = 'System Settings';
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Other Settings</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Outras configurações</a>
                     </h4>
                 </div>
                 <div id="collapse5" class="panel-collapse collapse">
                     <div class="panel-body">
                         <p class="systemSettingsSubheader">
-                            Other Settings:
+                            Outras configurações:
                         </p>
                         <form class="form-horizontal" method="post" action="/settings/systemsettings.php" name="updateOtherSettings">
                         <fieldset>
                             <div class="form-group">
-                                <label for="inputEmailTemplate" class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="This template supports two variables, [user-name] and [reset-link]. Place them anywhere in the template and they will be replaced by the proper values.">Password Reset Email Template:</a></label>
+                                <label for="inputEmailTemplate" class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="This template supports two variables, [user-name] and [reset-link]. Place them anywhere in the template and they will be replaced by the proper values.">Template de e-mail:</a></label>
                                 <div class="col-lg-10">
                                     <textarea class="form-control" rows="7" id="inputEmailTemplate" placeholder="Password Reset Email Template" name="email_emailTemplate" required><?php
                                         if (isset($systemSettings) && $resetEmailBody = $systemSettings->getOtherSetting('resetemailbody')) {
@@ -374,30 +386,30 @@ $pageTitle = 'System Settings';
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="By disabling this, users will no longer be able to reset their passwords using secondary emails.">Password Reset By Email:</a></label>
+                                <label class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Ao desabilitar isso, os usuários não poderão mais redefinir suas senhas usando e-mails secundários.">Resetar senha com e-mail:</a></label>
                                 <div class="col-lg-10">
                                     <div class="radio">
                                       <label>
                                         <input type="radio" name="options_EnableEmailReset" value="true" <?php if ($systemSettings->getOtherSetting('emailresetenabled ') == 'true') { echo 'checked="checked"'; } ?> >
-                                        Enabled
+                                        habilitado
                                       </label>
                                     </div>
                                     <div class="radio">
                                       <label>
                                         <input type="radio" name="options_EnableEmailReset" value="false" <?php if ($systemSettings->getOtherSetting('emailresetenabled ') != 'true') { echo 'checked="checked"'; } ?>>
-                                        Disabled
+                                        Desabilitado
                                       </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label id="inputEmailLDAPAttribute" class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="This is the LDAP attribute on user objects that specifies the email address to use when sending password recovery emails. The default attribute is &quot;mail&quot;.">Email LDAP Attribute:</a></label>
+                                <label id="inputEmailLDAPAttribute" class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Este é o atributo LDAP em objetos de usuário que especifica o endereço de e-mail a ser usado ao enviar e-mails de recuperação de senha. O atributo padrão é &quot; mail &quot;.."> Atributo de Email LDAP:</a></label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" id="inputEmailLDAPAttribute" name="email_ldapattribute" placeholder="Email LDAP Attribute" value="<?php echo $systemSettings->getOtherSetting('emailldapattribute'); ?>" autocomplete="off" required>
+                                    <input type="text" class="form-control" id="inputEmailLDAPAttribute" name="email_ldapattribute" placeholder="Atributo de Email LDAP" value="<?php echo $systemSettings->getOtherSetting('emailldapattribute'); ?>" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="This specifies how many failed attempts are allowed at answering secret questions in a 15 minute period.">Failed Reset Attempts Allowed:</a></label>
+                                <label class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Isso especifica quantas tentativas malsucedidas são permitidas para responder a perguntas secretas em um período de 15 minutos.">Tentativas de redefinição sem sucesso permitidas:</a></label>
                                 <div class="col-lg-10">
                                       <select class="form-control" name="questions_failedattemptsallowed">
                                             <?php
@@ -419,7 +431,7 @@ $pageTitle = 'System Settings';
                             <br />
                             <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
-                                    <button type="submit" class="btn btn-primary" name="updateOtherSettings" value="Update Other Settings">Update</button>
+                                    <button type="submit" class="btn btn-primary" name="updateOtherSettings" value="Update Other Settings">Atualizar</button>
                                     <button class="btn btn-default" type="reset">Reset</button>
                                 </div>
                             </div>

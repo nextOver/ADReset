@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$pageTitle = 'User Settings';
+$pageTitle = 'Configurações do usuário';
     require_once(__DIR__ . '/../templates/header.php');
 ?>
 <body>
@@ -13,8 +13,8 @@ $pageTitle = 'User Settings';
 <script src="/js/resetSecretQuestionsPrompt.js"></script>
 <!-- Content Starts -->
 <div class="container" id="mainContentBody">
-    <h2 class="topHeader">User Settings</h2>
-    <h3>Welcome <?php echo ucwords($_SESSION['user_name']); ?>,</h3>
+    <h2 class="topHeader">Configurações do usuário</h2>
+    <h3>Bem vindo <?php echo ucwords($_SESSION['user_name']); ?>,</h3>
     <br />
     <div class="col-md-12">
         <?php
@@ -30,8 +30,8 @@ $pageTitle = 'User Settings';
         <div class="col-md-12">
             <div class="alert alert-info infoBlurb" role="alert">
                 <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <p>Setting your secret questions will allow you to reset your Windows (Active Directory) password without the assistance of the Help Desk.</p>
-                <p>Three secret questions must be set before this feature can be taken advantage of. As of now, you have <?php echo $numSecretQuestionsSet; ?> out of 3 set.</p>
+                <p>Definir suas perguntas secretas permitirá que você redefina sua senha do Windows (Active Directory) sem a ajuda do Help Desk.</p>
+                <p>Três perguntas secretas devem ser definidas antes que este recurso possa ser utilizado. Você tem <?php echo $numSecretQuestionsSet; ?> de 3 respostas configuradas.</p>
             </div>
         </div>
         <?php
@@ -39,25 +39,25 @@ $pageTitle = 'User Settings';
             }
         ?>
     </div>
-    <h4>What would you like to change?</h4>
+    <h4>O que você gostaria de mudar?</h4>
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        User Settings
+                        Configurações do usuário
                     </h4>
                 </div>
                 <div id="collapse4" class="panel-collapse ">
                     <div class="panel-body">
                         <p class="systemSettingsSubheader">
-                            <a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Below you can fill out your secret questions and answers. Once all three are set, you will be able to reset your Windows (Active Directory) password using them.">Manage Your Secret Questions Below:</a>
+                            <a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Abaixo você pode preencher suas perguntas e respostas secretas. Depois que todos os três estiverem definidos, você poderá redefinir sua senha do Windows (Active Directory) usando-as.">Gerencie suas perguntas secretas abaixo:</a>
                         </p>
                         <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead><tr>
-                                <th class="center">Secret Questions:</th>
-                                <th class="center">Secret Answers:</th>
-                                <th class="center">Actions:</th>
+                                <th class="center">Perguntas secretas:</th>
+                                <th class="center">Respostas secretas:</th>
+                                <th class="center">Ações</th>
                             </tr></thead>
                             <tbody>
                             <?php
@@ -66,8 +66,8 @@ $pageTitle = 'User Settings';
                                     echo '<tr>
                                         <form class="btn-link-form" method="post" action="usersettings.php" name="editSecretAnswer">
                                         <td class="center width-forty" style="min-width:150px">', $question, '</td>
-                                        <td class="width-fifty" style="min-width:150px"><input type="password" class="form-control" placeholder="Enter a new secret answer" name="secretAnswer"></td>
-                                        <td class="center"><input type="submit" class="btn btn-link center" name="editSecretAnswer" value="Update"></td>
+                                        <td class="width-fifty" style="min-width:150px"><input type="password" class="form-control" placeholder="Insira sua resposta secreta" name="secretAnswer"></td>
+                                        <td class="center"><input type="submit" class="btn btn-link center" name="editSecretAnswer" value="Atualizar"></td>
                                         <input type="hidden" name="secretQuestion" value="' . $question . '">
                                         </form>
                                     </tr>';
@@ -92,7 +92,7 @@ $pageTitle = 'User Settings';
                                         // Allow input on the next quesiton needed to be filled
                                         if ($i == $numSecretQuestionsSet) {
                                             echo '</td>
-                                                <td class="width-fifty" style="min-width:150px"><input type="password" class="form-control" placeholder="Enter your secret answer" name="secretAnswer"></td>
+                                                <td class="width-fifty" style="min-width:150px"><input type="password" class="form-control" placeholder="Insira sua resposta secreta" name="secretAnswer"></td>
                                                 <td class="center"><input type="submit" class="btn btn-link" name="addSecretAnswer" value="Add"></td>
                                                 </form>
                                             </tr>';
@@ -100,7 +100,7 @@ $pageTitle = 'User Settings';
                                         // Disable the input for subsequent questions
                                         else {
                                             echo '</td>
-                                                <td class="width-fifty" style="min-width:150px"><input type="password" class="form-control" placeholder="Enter your secret answer" name="secretAnswer" disabled></td>
+                                                <td class="width-fifty" style="min-width:150px"><input type="password" class="form-control" placeholder="Insira sua resposta secreta" name="secretAnswer" disabled></td>
                                                 <td class="center"><input type="submit" class="btn btn-link" name="addSecretAnswer" value="Add" disabled></td>
                                                 </form>
                                             </tr>';
@@ -115,7 +115,7 @@ $pageTitle = 'User Settings';
                     </div>
 
                     <form method="post" action="usersettings.php" id="resetSecretQuestions" name="resetSecretQuestions">
-                        <input type="button" class="btn btn-danger resetQuestionsBtn" name="resetSecretQuestions" value="Erase Questions">
+                        <input type="button" class="btn btn-danger resetQuestionsBtn" name="resetSecretQuestions" value="Apagar respostas">
                         <input type="hidden" name="resetSecretQuestions" value="Reset Questions">
                     </form>
                 </div>
