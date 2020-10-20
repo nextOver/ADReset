@@ -21,11 +21,11 @@
         protected function setErrorAndQuit($message) {
             if (isset($message)) {
                 FlashMessage::flash('ChangePWError', $message);
-                header('Location: /settings/localusersettings.php');
+                header('Location: /settings/localusersettings');
                 exit();
             }
             else {
-                header('Location: /settings/localusersettings.php');
+                header('Location: /settings/localusersettings');
                 exit();
             }
         }
@@ -33,27 +33,27 @@
         private function changeThePassword() {
             // If the POST data of user_oldpassword doesn't exist, store a flash message in the user's session and redirect them to the usersettingspage
             if (!isset($_POST['user_oldpassword'])) {
-                $this->setErrorAndQuit('Old Password field was empty.');
+                $this->setErrorAndQuit('O campo da nova senha estava vazio.');
             }
             // If the POST data of user_newpassword doesn't exist, store a flash message in the user's session and redirect them to the usersettingspage
             elseif (!isset($_POST['user_newpassword'])) {
-                $this->setErrorAndQuit('New Password field was empty.');
+                $this->setErrorAndQuit('O campo de senha estava vazio');
             }
             // If the POST data of user_confirmnewpassword doesn't exist, store a flash message in the user's session and redirect them to the usersettingspage
             elseif (!isset($_POST['user_confirmnewpassword'])) {
-                $this->setErrorAndQuit('Confirm New Password field was empty.');
+                $this->setErrorAndQuit('O campo confirmação de nova senha estava vazio');
             }
             // If the POST data of user_oldpassword is not equal to user_newpassword, store a flash message in the user's session and redirect them to the usersettingspage
             elseif ($_POST['user_oldpassword'] == $_POST['user_newpassword']) {
-                $this->setErrorAndQuit('Old Password and New Password are the same.');
+                $this->setErrorAndQuit('A senha antiga e a nova senha são iguais.');
             }
             // If the POST data of user_newpassword is not equal to user_confirmnewpassword, store a flash message in the user's session and redirect them to the usersettingspage
             elseif ($_POST['user_newpassword'] != $_POST['user_confirmnewpassword']) {
-                $this->setErrorAndQuit('Passwords do not match.');
+                $this->setErrorAndQuit('As senhas não coincidem.');
             }
             // If the POST data of user_newpassword doesn't pass the passwordPolicyMatch function, store a flash message in the user's session and redirect them to the usersettingspage
             elseif (!passwordPolicyMatch($_POST['user_newpassword'])) {
-                $this->setErrorAndQuit('Password does not conform to the password policy.<br />'. passwordPolicyWritten());
+                $this->setErrorAndQuit('A senha não está de acordo com a política de senha..<br />'. passwordPolicyWritten());
             }
             // If all the required POST values that are required exist, then proceed with the password change
             elseif (isset($_POST['user_oldpassword']) && isset($_POST['user_newpassword']) && !empty($_POST['user_confirmnewpassword'])) {
@@ -84,8 +84,8 @@
                                 //Close the connection
                                 $stmt = null;
                                 Logger::log ('audit', 'Local Admin Password Change: The local administrator "' . $_SESSION['user_name'] . '" successfully changed their password');
-                                FlashMessage::flash('ChangePWMessage', 'Your password was changed successfully.');
-                                header('Location: /settings/localusersettings.php');
+                                FlashMessage::flash('ChangePWMessage', 'Sua senha foi alterada com sucesso.');
+                                header('Location: /settings/localusersettings');
                                 exit();
                             }
                             // If the adminsitrator's password update failed, then close the database connection and let the administrator know
@@ -93,24 +93,24 @@
                                 //Close the connection
                                 $stmt = null;
                                 Logger::log ('error', 'Password change for the local administrator "' . $SESSION['user_name'] . '" failed because the database couldn\'t execute the query');
-                                $this->setErrorAndQuit('Sorry, your password update failed. Please go back and try again.');
+                                $this->setErrorAndQuit('Desculpe, sua atualização de senha falhou. Por favor volte e tente novamente.');
                             } 
                         }
                         else {
                             Logger::log ('audit', 'Local Admin Password Change Failure: The local administrator "' . $_SESSION['user_name'] . '" failed to change their password because the current password supplied was incorrect');
                             // If the adminsitrator's password was incorrectly entered and let the administrator know
-                            $this->setErrorAndQuit('The password entered is incorrect.<br />Please try again.');
+                            $this->setErrorAndQuit('A senha inserida está incorreta.<br />Tente novamente.');
                         }
                     }
 
                     else {
                         Logger::log ('error', 'The local administrator password change failed because the user "' . $_SESSION['user_name'] . '" does not exist in the database');
-                        $this->setErrorAndQuit('The user does not exist in the database.<br />Please logout and log back in.');
+                        $this->setErrorAndQuit('O usuário não existe no banco de dados. <br/> Faça logout e login novamente.');
                     }
                 }
                 else {
                     Logger::log ('error', 'The local administrator password change failed for user "' . $_SESSION['user_name'] . '" because the database connection failed');
-                    $this->setErrorAndQuit('There was a problem connecting to the database.<br />Please try again.');
+                    $this->setErrorAndQuit('Ocorreu um problema ao conectar ao banco de dados. <br/> Por favor, tente novamente.');
                 }
             }
         }

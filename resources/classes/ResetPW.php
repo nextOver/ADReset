@@ -275,46 +275,46 @@
                                         }
 
                                         else {
-                                            FlashMessage::flash('NewPWError', 'The password could not be reset. Please make sure the password meets the password policy standards.');
+                                            FlashMessage::flash('NewPWError', 'A senha não pôde ser redefinida. Certifique-se de que a senha atenda aos padrões da política de senha.');
                                         }
                                     }
 
                                     else {
                                         Logger::log ('error', 'The username associated with this password reset could not be found for the user "' . $_POST['user_name'] . '"');
-                                        FlashMessage::flash('NewPWError', 'The username associated with this password reset could not be found. Please try again.');
+                                        FlashMessage::flash('NewPWError', 'O nome de usuário associado a esta redefinição de senha não foi encontrado');
                                     }
                                 }
 
                                 else {
                                     Logger::log ('error', 'The database couldn\'t find the GUID associated with the email reset code');
-                                    FlashMessage::flash('NewPWError', 'The database couldn\'t find the required data. Please try again.');
+                                    FlashMessage::flash('NewPWError', 'O banco de dados não conseguiu encontrar os dados necessários. Por favor, tente novamente.');
                                 }
                             }
 
                             else {
                                 Logger::log ('error', 'The database couldn\'t find the email reset code specified');
-                                FlashMessage::flash('NewPWError', 'The database couldn\'t find the required data. Please try again.');
+                                FlashMessage::flash('NewPWError', 'O banco de dados não conseguiu encontrar os dados necessários. Por favor, tente novamente.');
                             }
                         }
 
                         else {
                             Logger::log ('error', 'The database couldn\'t execute the query to find the userguid associated with the email reset code');
-                            FlashMessage::flash('NewPWError', 'The database couldn\'t find the required data. Please try again.');
+                            FlashMessage::flash('NewPWError', 'O banco de dados não conseguiu encontrar os dados necessários. Por favor, tente novamente.');
                         }
                     }
 
                     else {
-                        FlashMessage::flash('NewPWError', 'The password does not match the password policy<br />' . ADPasswordPolicyWritten());
+                        FlashMessage::flash('NewPWError', 'A senha não corresponde à política de senha<br />' . ADPasswordPolicyWritten());
                     }
                 }
 
                 else {
-                    FlashMessage::flash('NewPWError', 'The passwords entered do not match. Please try again.');
+                    FlashMessage::flash('NewPWError', 'As senhas inseridas não correspondem. Por favor, tente novamente.');
                 }
             }
 
             else {
-                FlashMessage::flash('NewPWError', 'The required form fields were not properly entered. Please try again.');
+                FlashMessage::flash('NewPWError', 'Os campos obrigatórios do formulário não foram inseridos corretamente. Por favor, tente novamente.');
             }
 
             return false;

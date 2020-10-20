@@ -32,18 +32,18 @@
         protected function setLoginErrorAndQuit($message) {
             if (isset($message)) {
                 FlashMessage::flash('LoginError', $message);
-                header('Location: /localadmin.php');
+                header('Location: /localadmin');
                 exit();
             }
         }
 
-        private function loginWithPOST() {
+        private function loginWithPOS() {
             // Verfiy the contents that were submitted by the form
             if (empty($_POST['user_name'])) {
-                $this->setLoginErrorAndQuit('The Username field was empty.');
+                $this->setLoginErrorAndQuit('O campo nome de usuário está vazio');
             }
             elseif (empty($_POST['user_password'])) {
-                $this->setLoginErrorAndQuit('The Password field was empty.');
+                $this->setLoginErrorAndQuit('O campo senha está vazio');
             }
             elseif (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
                 // Start the database connection
@@ -75,20 +75,20 @@
 
                             Logger::log('audit', 'Local Admin Login Success: The local administrator "' . $user_name . '" successfully logged in');
                             //The login is complete, redirect them
-                            header('Location: /localadmin.php');
+                            header('Location: /localadmin');
                             exit();
 
                         }
                         // If the username or password is incorrect, notify the administrator trying to log in
                         else {
                             Logger::log('audit', 'Local Admin Login Failure: The local administrator "' . $user_name . '" failed to login due to an incorrect password');
-                            $this->setLoginErrorAndQuit('The Username or Password is incorrect.<br />Please try again.');
+                            $this->setLoginErrorAndQuit('O nome de usuário ou senha está incorreto.<br/>Por favor tente novamente.');
                         }
                     }
                     // If the username or password is incorrect, notify the administrator trying to log in
                     else {
                         Logger::log('audit', 'Local Admin Login Failure: The local administrator "' . $user_name . '" failed to login due to an incorrect username');
-                        $this->setLoginErrorAndQuit('The Username or Password is incorrect.<br />Please try again.');
+                        $this->setLoginErrorAndQuit('O nome de usuário ou senha está incorreto.<br/>Por favor tente novamente.');
                     }
                 }
                 // If the database connection fails, notify the administrator trying to log in
@@ -108,7 +108,7 @@
             $_SESSION = array();
             session_destroy();
             // Redirect them to the login page.
-            header('Location: /localadmin.php');
+            header('Location: /localadmin');
             exit();
         }
         

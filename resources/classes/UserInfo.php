@@ -20,7 +20,7 @@
         protected function setErrorAndQuit($message) {
             if (isset($message)) {
                 FlashMessage::flash('ChangeProfileError', $message);
-                header('Location: /settings/localusersettings.php');
+                header('Location: /settings/localusersettings');
                 exit();
             }
         }
@@ -80,8 +80,8 @@
                         if ($stmt->rowCount() != 0) {
                             //Close the connections
                             $stmt = null;
-                            FlashMessage::flash('ChangeProfileError', 'This username is already taken.');
-                            header('Location: /settings/localusersettings.php');
+                            FlashMessage::flash('ChangeProfileError', 'Este nome de usuário já está em uso.');
+                            header('Location: /settings/localusersettings');
                             exit();
                         }
                     }
@@ -96,26 +96,26 @@
                         if ($stmt->rowCount() != 0) {
                             //Close the connections
                             $stmt = null;
-                            $this->setErrorAndQuit('This email address is already taken.');
+                            $this->setErrorAndQuit('Este e-mail de usuário já está em uso.');
                         }
                     }
                     $stmt = null;
                 }
 
                 if (strlen($user_newusername) > 64 || strlen($user_newusername) < 2) {
-                    $this->setErrorAndQuit('Password does not conform to the password policy.<br />'. passwordPolicyWritten());
+                    $this->setErrorAndQuit('A senha não está de acordo com a política de senha.<br />'. passwordPolicyWritten());
                 }
                 elseif (!preg_match('/^[a-zA-Z0-9]*[_.-]?[a-zA-Z0-9]*$/', $user_newusername)) {
-                    $this->setErrorAndQuit('Username does not match the naming scheme. Only letters, numbers, underscores, and periods are allowed');
+                    $this->setErrorAndQuit('O nome de usuário não corresponde ao esquema de nomenclatura. Apenas letras, números, sublinhados e pontos são permitidos');
                 }
                 elseif (empty($user_email)) {
-                    $this->setErrorAndQuit('Email cannot be empty.');
+                    $this->setErrorAndQuit('Email não pode ser vazio');
                 }
                 elseif (strlen($user_email) > 64) {
-                    $this->setErrorAndQuit('Email cannot be longer than 64 characters.');
+                    $this->setErrorAndQuit('Email não pode ter mais de 64 caracteres.');
                 }
                 elseif (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
-                    $this->setErrorAndQuit('Your email address is not in a valid email format.');
+                    $this->setErrorAndQuit('Este email não possui um formato válido');
                 }
                 elseif (!empty($user_newusername)
                     && strlen($user_newusername) <= 64
@@ -132,17 +132,17 @@
                     if ($stmt->execute(array($user_newusername, $user_name, $user_email, $user_username))) {
                         $_SESSION['user_name'] = $user_newusername;
                         Logger::log('audit', 'Local Admin Profile Change Success: Profile of User "' . $user_username . '" was set to User "' . $user_newusername . '", Name "' . $user_name . '", Email "' . $user_email . '"');
-                        FlashMessage::flash('ChangeProfileMessage', 'Profile was successfully modified.');
-                        header('Location: /settings/localusersettings.php');
+                        FlashMessage::flash('ChangeProfileMessage', 'O perfil foi alterado com sucesso.');
+                        header('Location: /settings/localusersettings');
                         exit();
                     }
                     else {
-                        $this->setErrorAndQuit('Profile could not be modified.');
+                        $this->setErrorAndQuit('Perfil não pôde ser modificado.');
                     }
                 }
             }
             else {
-                $this->setErrorAndQuit('There was a problem connecting to the database. Please try again.');
+                $this->setErrorAndQuit('Ocorreu um problema ao conectar ao banco de dados. Por favor, tente novamente.');
             }
         }
 

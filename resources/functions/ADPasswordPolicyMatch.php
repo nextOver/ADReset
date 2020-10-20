@@ -60,10 +60,10 @@
         $minPwdLength = $AD->getMinPasswordLength();
         if ($complexityRequirement) {
             $AD = null;
-            return 'The password must be ' . $minPwdLength . ' or more characters. It must also contain three of the following:<br />Uppercase, Lowercase, Number, and a Special Character';
+            return 'A senha deve ter ' . $minPwdLength . ' ou mais caracteres. E também deve conter:<br/>Letra maiúscula, Letra minúscula, número, e caractere especial Ex: @!%$#';
         }
         else {
             $AD = null;
-            return 'The password must be ' . $minPwdLength . ' or more characters.';
+            return 'A senha deve ter ' . $minPwdLength . ' ou mais caracteres.';
         }
     }

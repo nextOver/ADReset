@@ -106,7 +106,7 @@
             if (isset($_POST['groupname'])) {
                 try {
                     $this->addAdminGroup(html_entity_decode(trim($_POST['groupname'])));
-                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupname']) . ' was successfully added to the list of Administrative groups.');
+                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupname']) . ' foi adicionado com sucesso à lista de grupos administrativos.');
                     return true;        
                 }
                 catch (Exception $e) {
@@ -115,7 +115,7 @@
                 }
             }
             
-            FlashMessage::flash('SystemSettingsError', 'The administrator group couldn\'t be added');
+            FlashMessage::flash('SystemSettingsError', 'O grupo de administradores não pôde ser adicionado');
             return false;
         }
 
@@ -123,21 +123,21 @@
             if (isset($_POST['groupname']) && isset($_POST['groupguid'])) {
                 try {
                     $this->deleteAdminGroup($_POST['groupguid'], $_POST['groupname']);
-                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupname']) . ' was successfully removed. For affected logged in users, it will take effect once they log out and log back in.');
+                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupname']) . ' foi removido com sucesso. Para usuários conectados afetados, isso terá efeito assim que eles fizerem logout e login novamente..');
                     return true;
                 }
                 catch (Exception $e) {
-                    FlashMessage::flash('SystemSettingsError', sanitize($_POST['groupname']) . ' could not be removed from the Administrative groups. Please try again.');
+                    FlashMessage::flash('SystemSettingsError', sanitize($_POST['groupname']) . ' não pôde ser removido dos grupos administrativos. Por favor, tente novamente.');
                 }
             }
             elseif (isset($_POST['groupguid'])) {
                 try {
                     $this->deleteAdminGroup($_POST['groupguid']);
-                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupguid']) . ' was successfully removed. For affected logged in users, it will take effect once they log out and log back in.');
+                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupguid']) . ' foi removido com sucesso. Para usuários conectados afetados, isso terá efeito assim que eles fizerem logout e login novamente.');
                     return true;
                 }
                 catch (Exception $e) {
-                    FlashMessage::flash('SystemSettingsError', sanitize($e->getMessage()) . ' Please try again.');
+                    FlashMessage::flash('SystemSettingsError', sanitize($e->getMessage()) . ' Tente novamente.');
                 }
             }
 
@@ -153,7 +153,7 @@
                         $AD = new AD();
                     }
                     catch(Exception $e) {
-                        Logger::log('error', $e . ' when attempting to get the current administrator groups.');
+                        Logger::log('error', $e . ' ao tentar obter os grupos de administradores atuais.');
                         return array();
                     }
 
@@ -267,7 +267,7 @@
             if (isset($_POST['groupname'])) {
                 try {
                     $this->addResetGroup(html_entity_decode(trim($_POST['groupname'])));
-                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupname']) . ' was successfully added.');
+                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupname']) . ' Foi adicionado com sucesso.');
                     return true;
                 }
                 catch (Exception $e) {
@@ -276,7 +276,7 @@
                 }
             }
 
-            FlashMessage::flash('SystemSettingsError', 'The group couldn\'t be added');
+            FlashMessage::flash('SystemSettingsError', 'O grupo não pôde ser adicionado');
             return false;
         }
 
@@ -285,22 +285,22 @@
             if (isset($_POST['groupname']) && isset($_POST['groupguid'])) {
                 try {
                     $this->deleteResetGroup($_POST['groupguid'], $_POST['groupname']);
-                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupname']) . ' was successfully removed.');
+                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupname']) . ' removido com sucesso.');
                     return true;
                 }
                 catch (Exception $e) {
-                    FlashMessage::flash('SystemSettingsError', sanitize($e->getMessage()) . ' Please try again.');
+                    FlashMessage::flash('SystemSettingsError', sanitize($e->getMessage()) . ' Tente novamente.');
                     return false;
                 }
             }
             elseif (isset($_POST['groupguid'])) {
                 try {
                     $this->deleteResetGroup($_POST['groupguid']);
-                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupguid']) . ' was successfully removed.');
+                    FlashMessage::flash('SystemSettingsMessage', sanitize($_POST['groupguid']) . ' foi removido com sucesso.');
                     return true;
                 }
                 catch (Exception $e) {
-                    FlashMessage::flash('SystemSettingsError', sanitize($e->getMessage()) . ' Please try again.');
+                    FlashMessage::flash('SystemSettingsError', sanitize($e->getMessage()) . ' Tente novamente.');
                     return false;
                 }
             }
@@ -317,7 +317,7 @@
                         $AD = new AD();
                     }
                     catch(Exception $e) {
-                        Logger::log('error', $e . ' when attempting to get the current reset groups.');
+                        Logger::log('error', $e . 'ao tentar obter os grupos de reset atuais.');
                         return array();
                     }
 
@@ -474,7 +474,7 @@
             if (isset($_POST['email_fromEmail']) && isset($_POST['email_fromName']) && isset($_POST['email_username']) && isset($_POST['email_password']) && isset($_POST['email_server']) && isset($_POST['email_port']) && isset($_POST['email_encryption'])) {
                 if ($_POST['email_encryption'] == 'TLS' || $_POST['email_encryption'] == 'SSL' || $_POST['email_encryption'] == 'None') {
                     if ($this->setEmailSettings(html_entity_decode($_POST['email_fromEmail']), html_entity_decode($_POST['email_fromName']), html_entity_decode($_POST['email_username']), $_POST['email_password'], html_entity_decode($_POST['email_server']), html_entity_decode($_POST['email_port']), html_entity_decode($_POST['email_encryption']))) {
-                        FlashMessage::flash('SystemSettingsMessage', 'The email settings were update successfully.');
+                        FlashMessage::flash('SystemSettingsMessage', 'As configurações de e-mail foram atualizadas.');
                     }
                     else {
                         FlashMessage::flash('SystemSettingsError', $this->emailSettingsErrorMsg);
@@ -482,12 +482,12 @@
                     }
                 }
                 else {
-                    FlashMessage::flash('SystemSettingsError', 'Invalid encryption setting of ' . sanitize($_POST['email_encryption']) . '.');
+                    FlashMessage::flash('SystemSettingsError', 'Configuração de criptografia inváliza para ' . sanitize($_POST['email_encryption']) . '.');
                     return false;
                 }
             }
             else {
-                FlashMessage::flash('SystemSettingsError', 'All fields were not supplied in the Email Connection Settings form.');
+                FlashMessage::flash('SystemSettingsError', 'Todos os campos não foram fornecidos no formulário de configurações de conexão de e-mail');
                 return false;
             }
         }
@@ -564,7 +564,7 @@
                         $this->setOtherSetting('failedattemptsallowed', trim($_POST['questions_failedattemptsallowed']));
                     }
 
-                    FlashMessage::flash('SystemSettingsMessage', 'The settings were successfully set.');
+                    FlashMessage::flash('SystemSettingsMessage', 'As configurações foram salvas com sucesso..');
                     return true;
                 }
                 catch (Exception $e) {
@@ -572,7 +572,7 @@
                 }
             }
 
-            FlashMessage::flash('SystemSettingsError', 'The settings could not be set');
+            FlashMessage::flash('SystemSettingsError', 'A configuração não pôde ser aplicada');
             return false;
         }
 
@@ -629,7 +629,7 @@
             if (isset($_POST['secretquestion'])) {
                 try {
                     $this->addSecretQuestion(html_entity_decode(trim($_POST['secretquestion'])));
-                    FlashMessage::flash('SystemSettingsMessage', 'The secret question was successfully added.');
+                    FlashMessage::flash('SystemSettingsMessage', 'A pergunta secreta foi adicionada com sucesso.');
                     return true;
                 }
                 catch (Exception $e) {
@@ -638,7 +638,7 @@
                 }
             }
 
-            FlashMessage::flash('SystemSettingsError', 'The secret question couldn\'t be added');
+            FlashMessage::flash('SystemSettingsError', 'A pergunta secreta não pôde ser adicionada');
             return false;
         }
 
@@ -683,11 +683,50 @@
             return false;
         }
 
-        public function changeSecretQuestionStatusFromPOST($secretQuestion) {
+        private function deleteSecretQuestion($secretQuestion) {
+            if (isset($secretQuestion)) {
+            $stmt = $this->db_connection->prepare('DELETE from secretquestions where secretquestion = ?');
+
+
+            if ($stmt->execute(array($secretQuestion))) 
+            {
+                                if (isset($_SESSION['user_name'])) {
+                                    Logger::log('audit', 'Remove Secret Question Success: The secret question of "' . $secretQuestion . '" was removed by "' . $_SESSION['user_name'] . '"');
+                                    return true;
+                                }else{
+                                     Logger::log('audit', 'Remove Secret Question Error: Error to remove secrete question');
+                                     return false;
+                                }
+            }
+                
+            }else{
+                echo "Não foi recebido o parâmetro";
+            }
+
+        }
+
+        public function deleteSecretQuestionFromPOST() {
+            if (isset($_POST['deleteSecretQuestion']) && isset($_POST['secretQuestion'])) {
+                try {
+                    $this->deleteSecretQuestion($_POST['secretQuestion']);
+                    FlashMessage::flash('SystemSettingsMessage', 'A pergunta secreta foi removida com sucesso');
+                    return true;
+                }
+                catch (Exception $e) {
+                    FlashMessage::flash('SystemSettingsError', sanitize($e->getMessage()));
+                    return false;
+                }
+            }
+
+            return false;
+        }
+    
+
+        public function changeSecretQuestionStatusFromPOST() {
             if (isset($_POST['changeSecretQuestion']) && isset($_POST['secretQuestion'])) {
                 try {
                     $this->changeSecretQuestionStatus($_POST['secretQuestion']);
-                    FlashMessage::flash('SystemSettingsMessage', 'The secret question status was changed successfully.');
+                    FlashMessage::flash('SystemSettingsMessage', 'O status da pergunta secreta foi alterado com sucesso');
                     return true;
                 }
                 catch (Exception $e) {

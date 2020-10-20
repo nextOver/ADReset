@@ -233,7 +233,7 @@
         private function setErrorAndQuit($message) {
             if (isset($message)) {
                 FlashMessage::flash('ChangeUserSettingsError', $message);
-                header('Location: /settings/usersettings.php'); 
+                header('Location: /settings/usersettings'); 
                 exit();
             }
         }
@@ -245,13 +245,13 @@
                     try {
                         $this->setSecretQuestionToUser($_SESSION['user_name'], $_POST['secretQuestion'], $_POST['secretAnswer']);
                         if ($numSecretQuestionsSet = $this->numSecretQuestionsSetToUser($_SESSION['user_name']) == 3) {
-                            FlashMessage::flash('ChangeUserSettingsMessage', 'You have successfully set all of your required secret questions. You may now log out.');
+                            FlashMessage::flash('ChangeUserSettingsMessage', 'Você definiu com êxito todas as suas perguntas secretas obrigatórias.');
                         }
                         else {
-                            FlashMessage::flash('ChangeUserSettingsMessage', 'The new secret question was successfully set.');  
+                            FlashMessage::flash('ChangeUserSettingsMessage', 'A pergunta secreta foi definida com sucesso.');  
                         }
 
-                        header('Location: /settings/usersettings.php'); 
+                        header('Location: /settings/usersettings'); 
                         exit();
                     }
                     catch (Exception $e) {
@@ -260,14 +260,14 @@
                     
                 }
                 else {
-                    $this->setErrorAndQuit('The secret question was not set. You can only set a maximum of three secret questions.');
+                    $this->setErrorAndQuit('A pergunta secreta não foi definida. Você só pode definir no máximo três perguntas secretas.');
                 }
             }
             else {
-                $this->setErrorAndQuit('The secret question was not set. You must fill in all the required fields to add a new secret question.');
+                $this->setErrorAndQuit('A pergunta secreta não foi definida. Você deve preencher todos os campos obrigatórios para adicionar uma nova pergunta secreta.');
             }
 
-            $this->setErrorAndQuit('The secret question was not set.');
+            $this->setErrorAndQuit('A pergunta secreta não foi definida.');
             return false;
         }
 
@@ -278,22 +278,22 @@
                     foreach($secretQuestions as $secretQuestion) {
                         if ($secretQuestion == $_POST['secretQuestion']) {
                             $this->setSecretQuestionToUser($_SESSION['user_name'], $_POST['secretQuestion'], $_POST['secretAnswer']);
-                            FlashMessage::flash('ChangeUserSettingsMessage', 'The secret question was successfully set.');
-                            header('Location: /settings/usersettings.php'); 
+                            FlashMessage::flash('ChangeUserSettingsMessage', 'A pergunta secreta foi definida com sucesso.');
+                            header('Location: /settings/usersettings'); 
                             exit();
                             return true;
                         }
                     }
                 }
 
-                $this->setErrorAndQuit('The secret question was not set because it is invalid.');
+                $this->setErrorAndQuit('A pergunta secreta não foi definida porque é inválida');
                 
             }
             else {
-                $this->setErrorAndQuit('The secret question was not set. You must fill in all the required fields to add a new secret question.');
+                $this->setErrorAndQuit('A pergunta secreta não foi definida. Você deve preencher todos os campos obrigatórios para adicionar uma nova pergunta secreta.');
             }
 
-            $this->setErrorAndQuit('The secret question was not set.');
+            $this->setErrorAndQuit('A pergunta secreta não foi definida.');
             return false;
         }
 
@@ -304,19 +304,19 @@
                 }
                 catch(Exception $e) {
                     Logger::log('error', $e . ' when attempting reset secret questions for ' . $username);
-                    $this->setErrorAndQuit('The secret questions were not reset because the connection to Active Directory failed.');
+                    $this->setErrorAndQuit('As perguntas secretas não foram redefinidas porque a conexão com o Active Directory falhou.');
                 }
 
                 if ($userGUID = $AD->getUserGUID($username)) {
                     $stmt = $this->db_connection->prepare('DELETE FROM usersecretquestions WHERE userguid = ?');
                     if ($stmt->execute(array($userGUID))) {
-                        FlashMessage::flash('ChangeUserSettingsMessage', 'Your secret questions were successfully reset.');
-                        header('Location: /settings/usersettings.php'); 
+                        FlashMessage::flash('ChangeUserSettingsMessage', 'Suas perguntas secretas foram redefinidas com sucesso.');
+                        header('Location: /settings/usersettings'); 
                         exit();
                         return true;
                     }
                     else {
-                        $this->setErrorAndQuit('The secret questions were not reset due to a database error.');
+                        $this->setErrorAndQuit('As perguntas secretas não foram redefinidas devido a um erro no banco de dados.');
                     }
                 }
                 else {

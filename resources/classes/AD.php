@@ -9,14 +9,14 @@
         public function __construct() {
             // Set the connection settings
             if(!$this->getConnectionSettings()) {
-                throw new Exception('The Active Directory connection settings are not properly set');
+                throw new Exception('As configurações de conexão do Active Directory não estão definidas corretamente');
                 exit();
             }
 
             // Connect and bind with the account specified in init.php
             // If this fails, throw an exception
             if (!($this->connect() && $this->bind())) {
-                throw new Exception('The Domain Controller could not be contacted.');
+                throw new Exception('O controlador de domínio não pôde ser contatado.');
                 exit();
             }
         }
@@ -43,7 +43,7 @@
             }
             else {
                 $this->errorCount++;
-                $this->errorMsgs[] = 'The Active Directory connection failed.';
+                $this->errorMsgs[] = 'A conexão do Active Directory falhou.';
                 return false;
             }
         }
@@ -57,7 +57,7 @@
             }
             else {
                 $this->errorCount++;
-                $this->errorMsgs[] = 'The Active Directory bind failed. Check the username and password.';
+                $this->errorMsgs[] = 'A conexão do Active Directory falhou. Verifique o nome de usuário e a senha';
                 return false;
             }
         }

@@ -121,10 +121,10 @@ class ADLogin {
         if (isset($message)) {
             FlashMessage::flash('LoginError', $message);
             if (isset($_GET['page'])){
-                header('Location: /account.php?page=' . $_GET['page']);
+                header('Location: /account?page=' . $_GET['page']);
             }
             else {
-               header('Location: /account.php'); 
+               header('Location: /account'); 
             }
             exit();
         }
@@ -133,13 +133,13 @@ class ADLogin {
     private function loginWithPOST() {
         // Verfiy the contents that were submitted by the form
         if (empty($_POST['user_name'])) {
-            FlashMessage::flash('LoginError', 'The Username field was empty.');
-            header('Location: /account.php');
+            FlashMessage::flash('LoginError', 'O campo de nome de usuário estava vazio.');
+            header('Location: /account');
             exit();
         }
         elseif (empty($_POST['user_password'])) {
-            FlashMessage::flash('LoginError', 'The Password field was empty.');
-            header('Location: /account.php');
+            FlashMessage::flash('LoginError', 'O campo Senha estava vazio.');
+            header('Location: /account');
             exit();
         }
         elseif (!empty($_POST['user_name']) && !empty($_POST['user_password'])) {
@@ -162,7 +162,7 @@ class ADLogin {
                         $_SESSION['privilege'] = 'user';
                     }
                     else {
-                        $this->setLoginErrorAndQuit('You do not have permission to use ADReset. Please contact the Help Desk for assistance.');
+                        $this->setLoginErrorAndQuit('Você não tem permissão para usar este sistema. Entre em contato com o Help Desk para obter assistência..');
                     }
 
                     $_SESSION['user_name'] = $user_name;
@@ -176,7 +176,7 @@ class ADLogin {
                         header('Location: /' . urldecode($_GET['page']));
                     }
                     else {
-                       header('Location: /account.php'); 
+                       header('Location: /account'); 
                     }
                     exit();
                 }
@@ -185,22 +185,22 @@ class ADLogin {
                     // If the DC is not available, let the user know so they can contact Help Desk
                     if (ldap_error($this->ad_connection) == 'Can\'t contact LDAP server') {
                         Logger::log ('error', 'The Domain Controller could not be contacted');
-                        $this->setLoginErrorAndQuit('The Domain Controller could not be contacted.<br />Please try again.');
+                        $this->setLoginErrorAndQuit('O controlador de domínio não pôde ser contatado. <br/> Por favor, tente novamente.');
                     }
                     elseif (ldap_error($this->ad_connection) == 'Invalid credentials') {
                         Logger::log ('audit', 'Login Failure: The username or password is incorrect for the user "' . $user_name . '"');
-                        $this->setLoginErrorAndQuit('The Username or Password is incorrect. Please try again.');
+                        $this->setLoginErrorAndQuit('O nome de usuário ou senha está incorreto. Por favor, tente novamente.');
                     }
                     else {
                         Logger::log ('error', 'The following error occured when "' . $user_name . '"" attempted to login: ' . ldap_error($this->ad_connection));
-                        $this->setLoginErrorAndQuit('The Username or Password is incorrect. Please try again.');
+                        $this->setLoginErrorAndQuit('O nome de usuário ou senha está incorreto. Por favor, tente novamente.');
                     }
                 }
             }
             // If the AD connection fails, notify the user trying to log in
             else {
                 Logger::log ('error', 'The Domain Controller could not be contacted');
-                $this->setLoginErrorAndQuit('There was a problem connecting to the Domain Controller. Please try again.');
+                $this->setLoginErrorAndQuit('Ocorreu um problema de conexão com o controlador de domínio. Por favor, tente novamente.');
             }
         }
     }
@@ -224,7 +224,7 @@ class ADLogin {
             // Delete the user's session
             $_SESSION = array();
             session_destroy();
-            header('Location: /index.php');
+            header('Location: /index');
         }
         exit();
     }

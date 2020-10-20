@@ -11,5 +11,5 @@
     }
 
     function passwordPolicyWritten() {
-        return 'The password must be ' . Config::get('security/passwordLength') . ' or more characters.';
+        return 'A senha precisa ter' . Config::get('security/passwordLength') . ' ou mais caracteres.';
     }

@@ -162,46 +162,48 @@
 
                     if ($this->testSettings($DC, $port, $username, $password, $domainName)) {
                         if (!$this->set('DC', $DC)) {
-                            FlashMessage::flash('ChangeConnectionSettingsError', 'The Domain Controller couldn\'t be set in the database.');
-                            header('Location: /settings/connectionsettings.php');
+                            FlashMessage::flash('ChangeConnectionSettingsError', 'Não foi possível definir o controlador de domínio no banco de dados..');
+                            header('Location: /settings/connectionsettings');
                             exit();
                         }
 
                         elseif (!$this->set('port', $port)) {
-                            FlashMessage::flash('ChangeConnectionSettingsError', 'The LDAPS port couldn\'t be set in the database.');
-                            header('Location: /settings/connectionsettings.php');
+                            FlashMessage::flash('ChangeConnectionSettingsError', '
+                                A porta LDAPS não pôde ser definida no banco de dados.');
+                            header('Location: /settings/connectionsettings');
                             exit();
                         }
 
                         elseif (!$this->set('username', $username)) {
-                            FlashMessage::flash('ChangeConnectionSettingsError', 'The Username couldn\'t be set in the database.');
-                            header('Location: /settings/connectionsettings.php');
+                            FlashMessage::flash('ChangeConnectionSettingsError', 'O nome de usuário não pôde ser inserido no banco de dados.');
+                            header('Location: /settings/connectionsettings');
                             exit();
                         }
 
                         elseif (!$this->set('password', $password)) {
-                            FlashMessage::flash('ChangeConnectionSettingsError', 'The Password couldn\'t be set in the database.');
-                            header('Location: /settings/connectionsettings.php');
+                            FlashMessage::flash('ChangeConnectionSettingsError', '
+                                A senha não pôde ser definida no banco de dados.');
+                            header('Location: /settings/connectionsettings');
                             exit();
                         }
 
                         elseif (!$this->set('domainName', $domainName)) {
-                            FlashMessage::flash('ChangeConnectionSettingsError', 'The Domain Name couldn\'t be set in the database.');
-                            header('Location: /settings/connectionsettings.php');
+                            FlashMessage::flash('ChangeConnectionSettingsError', 'O nome de domínio não pôde ser inserido no banco de dados.');
+                            header('Location: /settings/connectionsettings');
                             exit();
                         }
 
                         else {
                             // Successfully connected to Active Directory and added the connetion settings to the database.
-                            FlashMessage::flash('ChangeConnectionSettingsMessage', 'The connection to Active Directory was successful and the settings were saved.');
-                            header('Location: /settings/connectionsettings.php');
+                            FlashMessage::flash('ChangeConnectionSettingsMessage','A conexão com o Active Directory foi bem-sucedida e as configurações foram salvas.');
+                            header('Location: /settings/connectionsettings');
                             exit();
                         }
                     }
 
                     else {
-                        FlashMessage::flash('ChangeConnectionSettingsError', 'The Active Directory connection was not successful.<br />Please check your settings.');
-                        header('Location: /settings/connectionsettings.php');
+                        FlashMessage::flash('ChangeConnectionSettingsError', 'A conexão do Active Directory não foi bem-sucedida. <br/> Verifique suas configurações.');
+                        header('Location: /settings/connectionsettings');
                         exit();
                     }
 
@@ -209,14 +211,15 @@
 
                 else {
                     FlashMessage::flash('ChangeConnectionSettingsError', 'All fields were not filled out.');
-                    header('Location: /settings/connectionsettings.php');
+                    header('Location: /settings/connectionsettings');
                     exit();
                 }
             }
 
             else {
-                FlashMessage::flash('ChangeConnectionSettingsError', 'Could not connect to the database.');
-                header('Location: /settings/connectionsettings.php');
+                FlashMessage::flash('ChangeConnectionSettingsError', '
+                        Não foi possível conectar-se ao banco de dados.');
+                header('Location: /settings/connectionsettings');
                 exit();
             }
         }

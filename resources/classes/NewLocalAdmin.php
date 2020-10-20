@@ -20,7 +20,7 @@
         protected function setErrorAndQuit($message) {
             if (isset($message)) {
                 FlashMessage::flash('RegisterError', $message);
-                header('Location: /installer.php');
+                header('Location: /installer');
                 exit();
             }
         }
@@ -93,8 +93,8 @@
                                     if ($stmt->execute(array($user_name, $user_password_hash, $user_email, $user_fullname, $user_created))) {
                                         $stmt = null;
                                         Logger::log('audit', 'New Local Admin Success: The local administrator "' . $user_name . '" was created');
-                                        FlashMessage::flash('RegisterSuccess', $user_name . ' has been created successfully.<br />Make sure that you delete public/installer.php.');
-                                        header('Location: /localadmin.php');
+                                        FlashMessage::flash('RegisterSuccess', $user_name . ' foi criado com sucesso.<br />Certifique-se de excluir public/installer.php.');
+                                        header('Location: /localadmin');
                                         exit();
                                     }
                                     else {
