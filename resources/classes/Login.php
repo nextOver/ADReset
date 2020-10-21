@@ -37,7 +37,7 @@
             }
         }
 
-        private function loginWithPOS() {
+        private function loginWithPOST() {
             // Verfiy the contents that were submitted by the form
             if (empty($_POST['user_name'])) {
                 $this->setLoginErrorAndQuit('O campo nome de usuário está vazio');
