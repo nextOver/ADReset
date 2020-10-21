@@ -35,14 +35,14 @@ $pageTitle = 'Reset Password';
                  </div>
     </div>
     <div class="form-group">
-        <label for="inputUsername" class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Enter the username you use to login to Windows.">Nome de usuário:</a></label>
-        <div class="col-lg-10">
+        <label for="inputUsername" class="col-lg-3 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Insira seu nome de usuário usado para logar no windows">Nome de usuário:</a></label>
+        <div class="col-lg-4">
             <input type="text" class="form-control" id="inputUsername" placeholder="Nome de usuário" name="user_name" required="yes">
         </div>
     </div>
     <br />
     <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
+      <div class="col-lg-10 col-lg-offset-3">
         <button type="submit" class="btn btn-primary" name="resetPasswordWithQuestions" value="Reset">Resetar senha</button>
       </div>
     </div>

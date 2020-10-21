@@ -46,10 +46,10 @@
       </div>
 </div>
 <div class="form-group">
-  <label for="inputUsername" class="col-lg-2 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Este é o mesmo nome de usuário usado para logar em seu computador."
+  <label for="inputUsername" class="col-lg-3 control-label"><a href="#" class="tool-tip" data-toggle="tooltip" data-placement="top" data-original-title="Este é o mesmo nome de usuário usado para logar em seu computador."
     >Nome de usuário:</a>
   </label>
-  <div class="col-lg-10">
+  <div class="col-lg-4">
     <input type="text" class="form-control" id="inputUsername" placeholder="Insira seu nome de usuário" name="user_name" required="yes"
      <?php if (isset($_SESSION['user_name'])) 
         { echo "value=".$_SESSION['user_name'];
@@ -64,38 +64,38 @@
   </div>
 </div>
 <div class="form-group">
-  <label for="inputOldPassword" class="col-lg-2 control-label">Senha atual:</label>
-  <div class="col-lg-10">
+  <label for="inputOldPassword" class="col-lg-3 control-label">Senha atual:</label>
+  <div class="col-lg-4">
     <input type="password" class="form-control" id="inputOldPassword" placeholder="Insira sua senha atual" name="user_password" autocomplete="off" required="yes">
   </div>
 </div>
 <div class="form-group">
-  <label for="inputNewPassword" class="col-lg-2 control-label">Nova senha:</label>
-  <div class="col-lg-10">
+  <label for="inputNewPassword" class="col-lg-3 control-label">Nova senha:</label>
+  <div class="col-lg-4">
     <input type="password" class="form-control" id="inputNewPassword" placeholder="Insira uma nova senha" name="user_new_password" autocomplete="off" required="yes">
   </div>
 </div>
 <div class="form-group">
-  <label for="inputConfirmPassword" class="col-lg-2 control-label">Confirmar nova senha:</label>
-  <div class="col-lg-10">
+  <label for="inputConfirmPassword" class="col-lg-3 control-label">Confirmar nova senha:</label>
+  <div class="col-lg-4">
     <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirme sua nova senha" name="user_confirm_password" autocomplete="off">
   </div>
 </div>
 <br />
 <div class="form-group">
-  <div class="col-lg-10 col-lg-offset-2">
+  <div class="col-lg-5 col-lg-offset-3">
     <img src="<?php echo $builder->inline(); ?>" />
   </div>
 </div>
 <div class="form-group">
-  <label for="inputCaptcha" class="col-lg-2 control-label">Código de verificação:</label>
-  <div class="col-lg-10">
+  <label for="inputCaptcha" class="col-lg-3 control-label">Código de verificação:</label>
+  <div class="col-lg-4">
     <input type="text" class="form-control" id="inputCaptcha" placeholder="Insira o código de verificação" name="user_captcha" autocomplete="off" required="yes"> 
   </div>
 </div>
 <br />
 <div class="form-group">
-  <div class="col-lg-10 col-lg-offset-2">
+  <div class="col-lg-5 col-lg-offset-3">
     <button type="submit" class="btn btn-primary" name="changepw" value="Change Password">Alterar senha</button>
     <button class="btn btn-default" type="reset">Resetar formulário</button>
   </div>
@@ -103,6 +103,12 @@
 </fieldset>
 </form>
 </div>
+
+ <div class="margin-bottom">
+     <div> &nbsp;&nbsp;</div>
+     <div> &nbsp;&nbsp;</div>
+     <div> &nbsp;&nbsp;</div>
+  </div>
 <!-- End of Form -->
 
 </div>
