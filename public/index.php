@@ -44,14 +44,14 @@ $pageTitle = 'Home';
                                 O que você gostaria de fazer?
                                 </h4>
                             </div>
-                            <div id="collapse4" class="panel-collapse ">
+                            <div id="collapse4" class="panel-collapse">
                                 <div class="panel-body">
                                     <br />
                                     <p style="font-weight:normal; max-width:780px">                              
-                                        ADReset permite redefinir sua senha do Windows (Active Directory) por meio de perguntas secretas ou um e-mail secundário. 
+                                        Esta aplicação permite redefinir sua senha do Windows (Active Directory) por meio de perguntas secretas ou um e-mail cadastrado. 
                                         Para definir as perguntas secretas, clique em &quot;Definir perguntas&quot; 
                                         e faça login. Sua senha não pode ser redefinida por meio deste método até que suas perguntas secretas sejam definidas.
-                                        Você também pode simplesmente alterar sua senha sem redefini-la, simplesmente inserindo sua senha atual e sua nova senha. Para fazer isso, basta clicar em &quot;Alterar senha&quot;.
+                                        Você também pode simplesmente alterar sua senha sem redefini-la, inserindo sua senha atual e sua nova senha. Para fazer isso, basta clicar em &quot;Alterar senha&quot;.
                                     </p><br />
 
                                     <p style="font-weight:normal" class="indexHeader">
