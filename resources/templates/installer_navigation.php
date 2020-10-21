@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/index" class="navbar-brand"><img src="/img/ADReset.png" /></a>
+            <a href="/index" class="navbar-brand"><img src="/img/logo_pmp_original.png" /></a>
         </div>
         <!-- Navigation links for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
